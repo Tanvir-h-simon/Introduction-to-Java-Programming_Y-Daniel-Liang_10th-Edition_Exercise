@@ -9,7 +9,7 @@ public class C04Q19 {
         String isbn = scan.nextLine();
 
         // Validate input length
-        if (isbn.length() != 9) {
+        if (isbn.length() != 9 || !isbn.matches("[0-9]+")) {
             System.out.println("Invalid input. Please enter exactly 9 digits.");
             return;
         }
