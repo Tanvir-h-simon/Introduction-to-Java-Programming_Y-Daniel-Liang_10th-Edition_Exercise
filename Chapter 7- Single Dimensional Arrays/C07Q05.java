@@ -1,37 +1,57 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class C07Q05 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
+        int[] num = new int[10];
         int count = 0;
-        int[] numbers = new int[10];
-        int[] distinctNumbers = new int[10];
 
-        System.out.print("Enter 10 numbers: ");
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = input.nextInt();
+        System.out.println("Enter ten numbers: ");
+        for (int i = 0; i < 10; i++) {
+            num[i] = input.nextInt();
+        }
 
-            boolean isDistinct = true;
+        // Display the original number array
+        /* System.out.print("Number array: ");
+        for (int e : num){
+            System.out.print(e + " ");
+        }
+        System.out.println();*/
+        System.out.println("Number array: " + Arrays.toString(num));
 
-            // Check if the number is already in distinctNumbers
-            for (int j = 0; j < count; j++) {
-                if (numbers[i] == distinctNumbers[j]) {
-                    isDistinct = false;
-                    break; // Exit the loop
+        // Determine unique number and create a new sized array
+        int size = 0; // Final (Distinct number) array size
+        for (int i = 0; i < num.length; i++) {
+            boolean isDuplicate = false;
+            for (int j = 0; j < size; j++) {
+                if (num[i] == num[j]) {
+                    isDuplicate = true;
+                    break;
                 }
             }
-
-            if (isDistinct) {
-                distinctNumbers[count] = numbers[i];
+            // If it's distinct, keep it in the array
+            if (!isDuplicate){
+                num[size] = num[i]; // Store unique value
+                size++;
                 count++;
             }
         }
 
-        System.out.println("The number of distinct numbers is: " + count);
-        System.out.print("The distinct numbers are: ");
-        for (int i = 0; i < count; i++) {
-            System.out.print(distinctNumbers[i] + " ");
+        // Create a final array with distinct numbers
+        int[] finalUniqueNumArray = Arrays.copyOf(num, size);
+        /* for (int i = 0; i < num.length; i++){
+                    finalUniqueNumArray[i] = num[i];
+        }*/
+
+        System.out.println("Total distinct numbers are = " + count);
+
+        // Display distinct numbers
+        // System.out.println("Unique numbers: " + Arrays.toString(finalUniqueNumArray));
+        System.out.print("Unique numbers: ");
+        for (int element : finalUniqueNumArray) {
+            System.out.print(element + " ");
         }
     }
 }
